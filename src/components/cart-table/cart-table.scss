@@ -1,0 +1,107 @@
+.cart {
+    padding-top: 120px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+    @media (max-width: 768px) {
+        padding-top: 70px;
+    }
+    &__title {
+        @media (max-width: 768px) {
+            font-size: 18px;
+        }
+        font-size: 36px;
+        color: #fff;
+        text-align: center;
+        font-weight: 300;
+    }
+    &__list {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 0px 10px;
+    }
+    &__image {
+        max-width: 200px;
+        max-height: 100px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    &__item {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+
+        border: 1px solid rgba(256, 256, 256, 0.2);
+        background-color: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 20px rgba(256, 256, 256, 0.1);
+        &-title,
+        &-price {
+            max-width: 250px;
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            margin: 0 auto;
+        }
+        &-img {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            /* height: 125px;
+            width: 250px; */
+            // object-fit: cover;
+        }
+    }
+    &__close {
+        @media (min-width: 768px) {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            top: -10px;
+            right: -10px;
+            color: #fff;
+            font-size: 20px;
+            // border-radius: 100%;
+            border: 1px solid #fff;
+            cursor: pointer;
+        }
+    }
+    .order {
+        display: block;
+        margin: 30px auto 0px auto;
+        width: 170px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: #3836bd;
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        font-size: 14px;
+    }
+}
+.cart__item {
+    position: relative;
+}
+.cart__close {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    top: -10px;
+    right: -10px;
+    color: #fff;
+    font-size: 20px;
+    // border-radius: 100%;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.cart__item {
+    @media (min-width: 768px) {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+        align-items: center;
+    }
+}

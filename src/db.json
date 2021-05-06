@@ -1,0 +1,46 @@
+{
+	"menu": [
+		{
+			"title": "Chocolate Ice",
+			"price": 12,
+			"url": "https://cdn.pixabay.com/photo/2016/10/31/18/14/ice-1786311_960_720.jpg",
+			"category": "icecream",
+			"id": 1
+		},
+		{
+			"title": "Honey lemonade",
+			"price": 10,
+			"url": "https://cdn.pixabay.com/photo/2017/12/10/14/48/lemon-3010065_960_720.jpg",
+			"category": "lemonade",
+			"id": 2
+		},
+		{
+			"title": "Vanilla Ice",
+			"price": 13,
+			"url": "https://cdn.pixabay.com/photo/2019/11/07/13/05/waffle-4608843_960_720.jpg",
+			"category": "icecream",
+			"id": 3
+		},
+		{
+			"title": "Raspberries",
+			"price": 8,
+			"url": "https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2276_960_720.jpg",
+			"category": "fruits",
+			"id": 4
+		},
+		{
+			"title": "Pineapple",
+			"price": 25,
+			"url": "https://cdn.pixabay.com/photo/2017/04/11/07/11/pineapple-2220704_960_720.jpg",
+			"category": "fruits",
+			"id": 5
+		},
+		{
+			"title": "Cold Strawberry",
+			"price": 25,
+			"url": "https://cdn.pixabay.com/photo/2019/06/13/18/19/drinking-4272206_960_720.jpg",
+			"category": "lemonade",
+			"id": 6
+		}
+	]
+}
