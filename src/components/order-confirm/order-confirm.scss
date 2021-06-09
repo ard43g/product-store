@@ -1,0 +1,40 @@
+.order {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 0px;
+    background-color: rgba(0, 0, 0, 0.226);
+    &__wrapper {
+        a {
+            text-decoration: none;
+        }
+        position: relative;
+        @media (min-width: 520px) {
+            display: flex;
+        }
+        background-color: rgba(0, 0, 0, 0.568);
+        border-radius: 20px;
+    }
+    &__total-price {
+        position: relative;
+        margin: 10px 0;
+        text-align: center;
+        user-select: none;
+        color: #fff;
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0px;
+            right: -20px;
+            height: 2px;
+            width: 75px;
+            background-color: #fff;
+            transform: rotate(-20deg);
+        }
+        span {
+            font-weight: bold;
+        }
+    }
+}

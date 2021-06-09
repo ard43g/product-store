@@ -1,84 +1,59 @@
-import React,{Component} from 'react';
-import './item-page.scss';
-import Spinner from '../spinner';
-import WithRestoService from '../hoc/';
-import {connect} from 'react-redux';
-import {menuLoaded, menuRequested, menuError, addedToCart} from '../../actions';
-// import {Link} from 'react-router-dom'; //? NO USE
+import React, { useState, useEffect } from "react";
+import "./item-page.scss";
 
+import { connect } from "react-redux";
+import { Redirect, withRouter } from "react-router";
 
+import { onAddToCart, onSetActiveCategories } from "../../actions";
+import ProductItem from "../product-item";
+import { getProducts, isLoading } from "../../selectors/main-selector";
 
-class ItemPage extends Component {
-	componentDidMount() { 
-		if (this.props.menuItems.length === 0) {
-			this.props.menuRequested();
-		}
-		
-		const{RestoService} = this.props;
+const ItemPage = (props) => {
+    const [redirectFlag, setRedirectFlag] = useState(false);
+    const [currentId, setCurrentId] = useState(props.match.params.id);
+    const currentCat = props.match.params.category;
 
+    let correctId = +props.match.params.id;
+    if (isNaN(props.match.params.id) || props.match.params.id > props.productsItems.length) {
+        correctId = props.productsItems.length;
+    }
 
-		RestoService.getMenuItems()
-                .then(res => this.props.menuLoaded(res))
-                .catch(error => this.props.menuError());
-		
-	}
-	
+    let item = props.productsItems.find((el) => +el.id === +correctId);
+    if (item.id === currentId && item.categories === currentCat && redirectFlag) {
+        setRedirectFlag(() => false);
+    }
 
-
-
-	render() {
-		if(this.props.loading) {
-            return (
-                <div className = "item_page">
-                    <Spinner/>
-                </div>
-            )
+    useEffect(() => {
+        if (props.match.params.id !== item.id && props.match.params.category !== item.categories) {
+            let item = props.productsItems.find((el) => el.categories === props.match.params.category);
+            setRedirectFlag(() => true);
+            setCurrentId(() => +item.id);
         }
-		const UpCategory = this.props.setCategory;
-		console.log(UpCategory);
+    }, [currentId]);
 
-		const item = this.props.menuItems.find(el => +el.id === +this.props.match.params.id)
-		const {title, price, url, category, id} = item;
-		console.log(`item on item-page : ${{item}}`);
-		console.log(item);
-
-		
-
-		return (
-				<div className='item__page'>
-					<li className="menu__item item__block">
-					<div className="menu__title">{title}</div>
-					<img className="menu__img" src={url} alt={title}></img>
-					<div className="menu__category">Category: <span>{category}</span></div>
-					<div className="menu__price">Price: <span>{price}$</span></div>
-					<button onClick={() => this.props.addedToCart(id)} className="menu__btn">Add to cart</button>
-					<span className = {`menu__category_Img ${category}`}></span> 
-				</li>
-				</div>
-			
-		)
-		
-	}
-}
+    return redirectFlag ? (
+        <Redirect to={`/product/${currentCat}/${currentId}`} />
+    ) : (
+        <ProductItem
+            key={item.id}
+            productItem={item}
+            onAddToCart={props.onAddToCart}
+            onSetActiveCategories={props.onSetActiveCategories}
+            itemPage
+        />
+    );
+};
 
 const mapStateToProps = (state) => {
+    return {
+        productsItems: getProducts(state),
+        loading: isLoading(state),
+    };
+};
 
+const mapDispatchToProps = {
+    onAddToCart,
+    onSetActiveCategories,
+};
 
-	return {
-		menuItems : state.menu,
-		loading : state.loading,
-		error : state.error,
-		setCategory : state.setCategory
-	}
-	;
-}
-
-
-const mapDispatchToProps= {
-	menuLoaded,
-	menuRequested,
-	menuError,
-	addedToCart
-}
-
-export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(ItemPage));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ItemPage));

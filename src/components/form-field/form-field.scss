@@ -1,0 +1,39 @@
+.form {
+    &__field {
+    }
+    &__field_error {
+        max-width: 150px;
+        font-size: 12px;
+        line-height: 14px;
+        color: red;
+    }
+    &__input {
+    }
+    &__input_tel,
+    &__input_text {
+        height: 30px;
+        padding: 5px;
+        border-radius: 20px;
+    }
+    &__input_checkbox {
+        margin: 0px 10px;
+    }
+}
+
+.form__input._error {
+    border: 2px solid red;
+}
+.form__field_error {
+    margin: 10px 0 0;
+    min-height: 50px;
+}
+
+.form__input:focus-visible {
+    outline: 2px solid #3836bd;
+}
+.form__field_checkbox {
+    display: inline-block;
+    label {
+        color: #fff;
+    }
+}

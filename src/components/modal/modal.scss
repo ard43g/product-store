@@ -1,0 +1,34 @@
+.error.error__service,
+.modal__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: rgba(41, 35, 35, 0.774);
+}
+.error__service_block,
+.modal__block {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    background-color: rgba(41, 35, 35, 0.932);
+    border-radius: 20px;
+    border: 3px solid #fff;
+    padding: 0px 10px;
+    text-align: center;
+
+    .modal__message {
+        line-height: 34px;
+    }
+}

@@ -1,37 +1,43 @@
-import React from 'react';
-import cartIcon from './shopping-cart-solid.svg';
-import './app-header.scss';
-import {connect} from 'react-redux';
-// import {totalPrice} from '../../actions';
-import {Link} from 'react-router-dom'
+import React from "react";
+import "./app-header.scss";
 
-const AppHeader = ({totalPrice}) => {
-	
-	
+import cartIcon from "./cart.svg";
+import cartIconFull from "./cart-full.svg";
 
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
+import { onSetActiveCategories } from "../../actions";
+import { getTotalPrice } from "../../selectors/main-selector";
+
+const AppHeader = ({ totalPrice, ...props }) => {
+    const iconCart = totalPrice > 0 ? cartIconFull : cartIcon;
+    const resetCategories = () => {
+        props.onSetActiveCategories();
+    };
     return (
         <header className="header">
+            <Link to={"/product"} className="header__link" onClick={resetCategories}>
+                Каталог
+            </Link>
 
-			<Link to={'/'} className="header__link" >
-				Menu
-			</Link>
-				
-			<Link to='/cart' className="header__link" >
-				<img className="header__cart" src={cartIcon} alt="cart"></img>	
-				Total: {totalPrice} $
-			</Link>	
-
-
-           
+            <Link to="/cart" className="header__link">
+                <img className="header__cart" src={iconCart} alt="cart"></img>
+                Total: {totalPrice} $
+            </Link>
         </header>
-    )
+    );
 };
 
-const mapStateToProps = ({totalPrice}) => {
-	return {
-		totalPrice
-	}
-}
+const mapStateToProps = (state) => {
+    return {
+        totalPrice: getTotalPrice(state),
+    };
+};
 
-export default connect(mapStateToProps)(AppHeader);
+const mapDispatchToProps = {
+    onSetActiveCategories,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AppHeader));

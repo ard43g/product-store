@@ -1,0 +1,35 @@
+.order {
+    &__product {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 10px 5px 0px 5px;
+    }
+    &__product-image {
+        width: 40px;
+        height: 40px;
+
+        img {
+            border-radius: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__products-wrapper {
+        overflow: hidden;
+    }
+
+    &__product-title {
+        margin: 0px 15px 0 5px;
+        color: #fff;
+    }
+    &__product-quantity {
+        span {
+            display: inline-block;
+            transform: rotate(-20deg) translateY(-8px);
+            transition: all 0.3s ease 0s;
+        }
+        color: #fff;
+    }
+}

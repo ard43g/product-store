@@ -1,0 +1,26 @@
+.categories {
+    &__wrapper {
+        @media (max-width: 520px) {
+            text-align: right;
+            padding-right: 20px;
+        }
+    }
+    &__label {
+        margin: 10px;
+        color: #fff;
+        font-size: 20px;
+        @media (max-width: 520px) {
+            display: none;
+        }
+    }
+    &__block {
+        display: inline-block;
+        height: 100%;
+        width: 200px;
+        text-align: right;
+    }
+    &__select {
+        width: 200px;
+        font-size: 20px;
+    }
+}

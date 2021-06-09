@@ -1,11 +1,7 @@
-import MainPage from './main-page';
-import CartPage from './cart-page';
-import ItemPage from './item-page';
-import CategoryPage from './item-page'
+import StartPage from "./start-page";
+import ProductPage from "./product-page";
+import CartPage from "./cart-page";
+import ItemPage from "./item-page";
+import OrderPage from "./order-page";
 
-export {
-    MainPage,
-    CartPage,
-	ItemPage,
-	CategoryPage
-};
+export { ProductPage, CartPage, ItemPage, StartPage, OrderPage };

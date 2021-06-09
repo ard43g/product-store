@@ -1,36 +1,29 @@
-import React from 'react';
-import {MainPage, CartPage, ItemPage, CategoryPage} from '../pages';
-import './app.scss'
-import AppHeader from '../app-header';
-// import WithRestoService from '../hoc';
-import Background from './berries-bg.jpg';
-import {Route, Switch} from 'react-router-dom';
+import React from "react";
+import { ProductPage, CartPage, ItemPage, StartPage, OrderPage } from "../pages";
+import "./app.scss";
+import AppHeader from "../app-header";
 
-const App = (/* {RestoService} */) => {
-	// console.log(RestoService.getMenuItems());
-	// console.log(RestoService.getMenuPizza());
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect, withRouter } from "react-router";
+import Spinner from "../spinner";
+const App = () => {
     return (
-        <div style={{background: `url(${Background}) center center/cover no-repeat`}} className="app">
-            <AppHeader /* total={50} *//>
-			<Switch>
-				<Route 
-					path='/' 
-					component={MainPage}
-					exact/>
-				<Route 
-					path='/cart' 
-					component={CartPage}/>
-				<Route 
-					path='/:id'
-					component={ItemPage}/>
-				{/* <Route 
-					path='/category'
-					component={CategoryPage}/>
- */}
-			</Switch>
+        <div>
+            <AppHeader />
+
+            <Switch>
+                {/* <Route path="/product/:category/:id" render={() => <ItemPage />} /> */}
+                <Route path="/product/:category/:id" render={() => <ItemPage />} />
+                <Route path="/product/:category?" render={() => <ProductPage />} />
+                <Route path="/order" render={() => <OrderPage />} />
+                <Route path="/cart" render={() => <CartPage />} />
+
+                <Route path="/" render={() => <StartPage />} exact />
+                {/* <Route path="/" render={() => <Spinner size="small" />} exact /> */}
+            </Switch>
         </div>
-    )
-}
+    );
+};
 
 // export default WithRestoService()(App);
-export default App;
+export default withRouter(App);

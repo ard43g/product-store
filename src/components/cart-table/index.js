@@ -1,3 +1,2 @@
-import CartTable from './cart-table';
-
+import CartTable from "./cart-table";
 export default CartTable;

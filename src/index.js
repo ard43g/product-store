@@ -1,28 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.scss";
 
-import {Provider} from 'react-redux';
-import {BrowserRouter as Router} from 'react-router-dom';
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import ErrorBoundry from './components/error-boundry';
-import RestoService from './services/resto-service';
-import RestoServiceContext from './components/resto-service-context';
-import store from './store';
+import store from "./store";
 
-import './index.scss';
-
-const restoService = new RestoService();
+import AppWrapper from "./components/app-wrapper";
+import ErrorBoundry from "./components/error-boundry";
 
 ReactDOM.render(
     <Provider store={store}>
-		<ErrorBoundry>
-			<RestoServiceContext.Provider value={restoService}>
-				<Router>
-					<App/>
-				</Router>
-			</RestoServiceContext.Provider>
-		</ErrorBoundry>
-	</Provider>
-    , document.getElementById('root'));
-
+        <ErrorBoundry>
+            <Router>
+                <AppWrapper />
+            </Router>
+        </ErrorBoundry>
+    </Provider>,
+    document.getElementById("root")
+);

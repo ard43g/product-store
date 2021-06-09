@@ -1,0 +1,31 @@
+.order {
+    &__wrapper {
+        padding: 10px;
+    }
+    &__form {
+        min-height: 310px;
+        padding: 20px;
+        border: 1px solid #fff;
+        border-radius: 20px;
+    }
+    &__label {
+        display: inline-block;
+    }
+    &__field-wrapper {
+        margin: 10px 0;
+    }
+    &__field {
+    }
+    &__submit {
+        position: relative;
+    }
+    &__submit-btn {
+    }
+}
+
+.order__field-wrapper .order__label {
+}
+.order__submit-btn.product__btn:disabled {
+    background-color: #3836bd4f;
+    cursor: not-allowed;
+}

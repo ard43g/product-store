@@ -1,72 +1,87 @@
-import React from 'react';
-import './cart-table.scss';
-import WithRestoService from '../hoc';
-import {connect} from 'react-redux';
-import {deleteFromCart} from '../../actions';
+import React from "react";
+import "./cart-table.scss";
 
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const CartTable = ({items, deleteFromCart, RestoService}) => {
-	if (items.length === 0) {
-	return (
-			<div className="cart__title">Ваша корзина пуста</div>
-		)
-	}
-    return (
-        <>
-            <div className="cart__title">Ваш заказ:</div>
-            <div className="cart__list">
-				{
-					items.map(item => {
-						const{title, price, url, id, quantity} = item;
-						return (
-							<div key={id} className="cart__item">
-								<div className='cart__image'>
-									<img src={url} className="cart__item-img" alt="{title}"></img>
-								</div>
-								<div className="cart__item-title">{title}</div>
-								<div className="cart__item-price">{price}$ * {quantity}</div>
-								<div onClick={()=> deleteFromCart(id)}className="cart__close">&times;</div>
-								
-                			</div>
-						)
-					})
-				}
-                
+import { changeQuantityInCart, removeFromCart } from "../../actions";
+import { getProductInCart } from "../../selectors/main-selector";
+
+const CartTable = ({ products, removeFromCart, changeQuantityInCart }) => {
+    if (products.length === 0) {
+        return (
+            <div className="cart__wrapper">
+                <div className="cart__title">Ваша корзина пуста</div>
+                <div className="cart__back">
+                    <Link to={"/product"} className="cart__back_btn">
+                        <span>Выбрать что-нибудь</span>
+                    </Link>
+                </div>
             </div>
-			<button 
-				onClick = { () => {RestoService.setOrder( generateOrder(items))} }
-				className='order'> Оформить заказ</button>
-        </>
+        );
+    }
+    return (
+        <div className="cart">
+            <div className="cart__title">Ваш заказ:</div>
+            <button className="cart__btn-wrapper cart__btn-buy">
+                <Link to="/order">Оформить</Link>
+            </button>
+
+            <div className="cart__list">
+                {products.map((item) => {
+                    const { title, price, url, id, quantity, categories } = item;
+                    return (
+                        <div key={id} className="cart__item">
+                            <div className="cart__image">
+                                <Link to={`/product/${categories}/${id}`}>
+                                    <img src={url} className="cart__item-img" alt="{title}"></img>
+                                </Link>
+                            </div>
+
+                            <div className="cart__item-title">
+                                <Link to={`/product/${categories}/${id}`}>{title}</Link>
+                            </div>
+
+                            <div className="cart__btn-wrapper">
+                                <button onClick={() => changeQuantityInCart(id, "plus")} className="cart__btn-quantity">
+                                    <span>+</span>
+                                </button>
+                                <button
+                                    disabled={quantity <= 1}
+                                    onClick={() => changeQuantityInCart(id, "minus")}
+                                    className="cart__btn-quantity"
+                                >
+                                    <span>-</span>
+                                </button>
+                            </div>
+                            <div className="cart__item-price">
+                                <span>
+                                    {price}$ * {quantity} шт.
+                                    <br></br> на сумму <br></br> {(price * quantity).toFixed(2)}$
+                                </span>
+                            </div>
+                            <div onClick={() => removeFromCart(id)} className="cart__close">
+                                <span>&times;</span>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+            <button className="cart__btn-wrapper cart__btn-main">
+                <Link to="/order">Оформить</Link>
+            </button>
+        </div>
     );
 };
 
-const generateOrder = (items) => {
-	const newOrder = items.map(item => {
-		return {
-			id : item.id,
-			quantity: item.quantity
-		}
-	})
-	console.log(newOrder);
-	return newOrder;
-}
-
-
-
-
-const mapStateToProps = (state) => {  // *можно сразу деструктуризировать {items}
-	return {
-		items : state.items
-	}
-}
+const mapStateToProps = (state) => {
+    return {
+        products: getProductInCart(state),
+    };
+};
 const mapDispatchToProps = {
-	
-		deleteFromCart : deleteFromCart
-	
-		/* onDelete : (id) => {
-			console.log(`delete : ${id}`);
-		}
-	    */
-}
+    removeFromCart,
+    changeQuantityInCart,
+};
 
-export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(CartTable));
+export default connect(mapStateToProps, mapDispatchToProps)(CartTable);
