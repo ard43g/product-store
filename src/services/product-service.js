@@ -1,4 +1,4 @@
-const _apiBase = "https://my-json-server.typicode.com/ard43g/test/";
+const _apiBase = "https://my-json-server.typicode.com/ard43g/storage/";
 const ProductService = {
     async getResource() {
         const response = await fetch(`${_apiBase}product/`);

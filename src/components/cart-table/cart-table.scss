@@ -62,9 +62,11 @@
         max-width: 200px;
         max-height: 100px;
         overflow: hidden;
-        margin: 0 auto;
         @media (min-width: 720px) {
             margin-left: 80px;
+        }
+        @media (max-width: 720px) {
+            margin: 0 auto;
         }
         a {
             @media (min-width: 768px) {
@@ -97,9 +99,16 @@
             text-align: center;
             color: #fff;
             font-size: 24px;
-            margin: 0 auto;
             user-select: none;
             font-size: inherit;
+            overflow: hidden;
+
+            @media (max-width: 720px) {
+                margin: 0 auto;
+            }
+            @media (min-width: 720px) {
+                flex: 1 1 200px;
+            }
         }
 
         &-title {
