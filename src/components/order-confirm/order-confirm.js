@@ -38,21 +38,23 @@ const OrderConfirm = ({ productInCart, totalPrice, loading, setNewOrder, clearFo
     return productInCart.length === 0 ? (
         <Redirect to="/product" />
     ) : (
-        <div className="order">
-            <div className="order__wrapper">
-                <Link to="/cart" className="cart__close">
-                    <span>&times;</span>
-                </Link>
-                <OrderForm onSubmit={generateOrder} clearForm={clearForm} loading={loading} />
-                <div className="order__products-wrapper">
-                    <div className="order__total-price">
-                        Заказ на сумму : <span>{totalPrice} $</span>
+        <>
+            <div className="order">
+                <div className="order__wrapper">
+                    <Link to="/cart" className="cart__close">
+                        <span>&times;</span>
+                    </Link>
+                    <OrderForm onSubmit={generateOrder} clearForm={clearForm} loading={loading} />
+                    <div className="order__products-wrapper">
+                        <div className="order__total-price">
+                            Заказ на сумму : <span>{totalPrice} $</span>
+                        </div>
+                        <OrderProducts productInCart={productInCart} />
                     </div>
-                    <OrderProducts productInCart={productInCart} />
                 </div>
-                {props.showModal && !props.errorService && <Modal type="done" message="Спасибо за заказ!" />}
             </div>
-        </div>
+            {props.showModal && !props.errorService && <Modal type="done" message="Спасибо за заказ!" />}
+        </>
     );
 };
 
