@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/product-store/static/css/main.079e8501.chunk.css",
-    "main.js": "/product-store/static/js/main.7a6455a9.chunk.js",
-    "main.js.map": "/product-store/static/js/main.7a6455a9.chunk.js.map",
+    "main.js": "/product-store/static/js/main.3aa53722.chunk.js",
+    "main.js.map": "/product-store/static/js/main.3aa53722.chunk.js.map",
     "runtime-main.js": "/product-store/static/js/runtime-main.c28c61a4.js",
     "runtime-main.js.map": "/product-store/static/js/runtime-main.c28c61a4.js.map",
-    "static/js/2.6dc75245.chunk.js": "/product-store/static/js/2.6dc75245.chunk.js",
-    "static/js/2.6dc75245.chunk.js.map": "/product-store/static/js/2.6dc75245.chunk.js.map",
+    "static/js/2.5e0022f5.chunk.js": "/product-store/static/js/2.5e0022f5.chunk.js",
+    "static/js/2.5e0022f5.chunk.js.map": "/product-store/static/js/2.5e0022f5.chunk.js.map",
     "index.html": "/product-store/index.html",
     "static/css/main.079e8501.chunk.css.map": "/product-store/static/css/main.079e8501.chunk.css.map",
-    "static/js/2.6dc75245.chunk.js.LICENSE.txt": "/product-store/static/js/2.6dc75245.chunk.js.LICENSE.txt",
+    "static/js/2.5e0022f5.chunk.js.LICENSE.txt": "/product-store/static/js/2.5e0022f5.chunk.js.LICENSE.txt",
     "static/media/app-wrapper.scss": "/product-store/static/media/berries-bg.e01edc78.jpg",
     "static/media/cart-full.38806c0a.svg": "/product-store/static/media/cart-full.38806c0a.svg",
     "static/media/cart.e780304c.svg": "/product-store/static/media/cart.e780304c.svg",
@@ -17,8 +17,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.c28c61a4.js",
-    "static/js/2.6dc75245.chunk.js",
+    "static/js/2.5e0022f5.chunk.js",
     "static/css/main.079e8501.chunk.css",
-    "static/js/main.7a6455a9.chunk.js"
+    "static/js/main.3aa53722.chunk.js"
   ]
 }
